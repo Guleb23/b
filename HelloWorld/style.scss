@@ -1,0 +1,85 @@
+@import 'Source/css/styleObnul';
+/********************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+/********************************************************/
+$black: #141414;
+$index: calc(1vw + 1vh);/*Чтобы рассчитать размер элементов так, что не имеет значение размер экрана*/
+$imgWidth:calc($index * 22) ;
+$imgHeight: calc($index * 14);
+/************************************************************/
+body{
+  font-family: 'Raleway', sans-serif;
+}
+/***********************************************************/
+a{
+  padding: 0;
+  display: block;
+}
+.magicList{
+  font-size: calc($index * 2.7);
+  padding: calc($index * 2.7);
+}
+.magicList__item{
+  padding: 0;
+  will-change: transform;
+
+  color: $black;
+  text-decoration: none;
+  display: block;
+  line-height: .9;
+  padding: calc($index * 5) calc($index * 7.5);
+  border-bottom: 1px solid $black;
+  counter-increment: myCounter;
+
+  &::before{
+    content: '(0' counter(myCounter) ')' ;
+    position: absolute;
+    font-size: calc($index * 0.9);
+    margin-left: calc($index * -2.3);
+    letter-spacing: 1px;
+    transition: 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  &:hover::before{
+    transform: translate3d(calc($index * -5), 0, 0);
+  }
+  &:first-child{
+    border-top: 1px solid $black;
+  }
+}
+.magicList__header{
+  min-width: min-content;
+  transition: 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  &:hover{
+    transform: translate3d(calc($index * -5), 0, 0);
+  }
+}
+.cursor{
+  position: fixed;
+  width: $imgWidth;
+  height: 0;
+  top: calc($imgHeight * -.5);
+  left: calc($imgWidth * -.5);
+  overflow: hidden;
+  transition: all 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translate3d(var(--move-x),var(--move-y),0);
+  z-index: -1;
+  will-change: transform;
+
+}
+.cursor__image{
+  position: relative;
+  width: calc($imgWidth * 2);
+  height: calc($imgHeight * 2);
+  top: calc($imgHeight * -.5);
+  left: calc($imgWidth * -.5);
+  background-size: cover;
+  background-position: center;
+  transition: all 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translate3d(calc(var(--move-x) / -5), calc(var(--move-y) / -5), 0) scale(1.5);
+}
+.magicList__item:hover .cursor{
+  height: $imgHeight ;
+}
+.magicList__item:hover .cursor__image{
+  transform:translate3d(calc(var(--move-x) / -5), calc(var(--move-y) / -5), 0) scale(1);
+}

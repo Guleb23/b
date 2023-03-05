@@ -1,0 +1,174 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/********************************************************/
+/********************************************************/
+/*Чтобы рассчитать размер элементов так, что не имеет значение размер экрана*/
+/************************************************************/
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+/***********************************************************/
+a {
+  padding: 0;
+  display: block;
+}
+
+.magicList {
+  font-size: calc((1vw + 1vh) * 2.7);
+  padding: calc((1vw + 1vh) * 2.7);
+}
+
+.magicList__item {
+  padding: 0;
+  will-change: transform;
+  color: #141414;
+  text-decoration: none;
+  display: block;
+  line-height: 0.9;
+  padding: calc((1vw + 1vh) * 5) calc((1vw + 1vh) * 7.5);
+  border-bottom: 1px solid #141414;
+  counter-increment: myCounter;
+}
+.magicList__item::before {
+  content: "(0" counter(myCounter) ")";
+  position: absolute;
+  font-size: calc((1vw + 1vh) * 0.9);
+  margin-left: calc((1vw + 1vh) * -2.3);
+  letter-spacing: 1px;
+  -webkit-transition: 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.magicList__item:hover::before {
+  -webkit-transform: translate3d(calc((1vw + 1vh) * -5), 0, 0);
+          transform: translate3d(calc((1vw + 1vh) * -5), 0, 0);
+}
+.magicList__item:first-child {
+  border-top: 1px solid #141414;
+}
+
+.magicList__header {
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
+  min-width: min-content;
+  -webkit-transition: 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.magicList__header:hover {
+  -webkit-transform: translate3d(calc((1vw + 1vh) * -5), 0, 0);
+          transform: translate3d(calc((1vw + 1vh) * -5), 0, 0);
+}
+
+.cursor {
+  position: fixed;
+  width: calc((1vw + 1vh) * 22);
+  height: 0;
+  top: calc((1vw + 1vh) * 14 * -0.5);
+  left: calc((1vw + 1vh) * 22 * -0.5);
+  overflow: hidden;
+  -webkit-transition: all 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transform: translate3d(var(--move-x), var(--move-y), 0);
+          transform: translate3d(var(--move-x), var(--move-y), 0);
+  z-index: -1;
+  will-change: transform;
+}
+
+.cursor__image {
+  position: relative;
+  width: calc((1vw + 1vh) * 22 * 2);
+  height: calc((1vw + 1vh) * 14 * 2);
+  top: calc((1vw + 1vh) * 14 * -0.5);
+  left: calc((1vw + 1vh) * 22 * -0.5);
+  background-size: cover;
+  background-position: center;
+  -webkit-transition: all 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 1.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transform: translate3d(calc(var(--move-x) / -5), calc(var(--move-y) / -5), 0) scale(1.5);
+          transform: translate3d(calc(var(--move-x) / -5), calc(var(--move-y) / -5), 0) scale(1.5);
+}
+
+.magicList__item:hover .cursor {
+  height: calc((1vw + 1vh) * 14);
+}
+
+.magicList__item:hover .cursor__image {
+  -webkit-transform: translate3d(calc(var(--move-x) / -5), calc(var(--move-y) / -5), 0) scale(1);
+          transform: translate3d(calc(var(--move-x) / -5), calc(var(--move-y) / -5), 0) scale(1);
+}
